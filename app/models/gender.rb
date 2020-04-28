@@ -1,7 +1,6 @@
 class Gender
   include RandomTable
 
-  HEADINGS = %w[1D6 RESULT].freeze
   TABLE = {
     1..2 => "male",
     3..5 => "female",

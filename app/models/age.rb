@@ -1,7 +1,6 @@
 class Age
   include RandomTable
 
-  HEADINGS = %w[1D6 RESULT].freeze
   TABLE = {
     1 => "a child",
     2 => "a teenager",

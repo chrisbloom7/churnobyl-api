@@ -1,7 +1,6 @@
 class Ethnicity
   include RandomTable
 
-  HEADINGS = %w[1D6 RESULT].freeze
   TABLE = {
     1 => "African",
     2 => "Asian/South Asian",

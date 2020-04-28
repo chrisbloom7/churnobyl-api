@@ -6,6 +6,10 @@ RSpec.describe NPCsController, type: :routing do
       expect(get: "/npcs").to route_to("npcs#index")
     end
 
+    it "routes to #random" do
+      expect(get: "/npcs/random").to route_to("npcs#random")
+    end
+
     it "routes to #show" do
       expect(get: "/npcs/1").to route_to("npcs#show", id: "1")
     end

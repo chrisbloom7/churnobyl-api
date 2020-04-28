@@ -5,12 +5,19 @@ class NPCsController < ApplicationController
   def index
     @npcs = NPC.all
 
-    render json: @npcs
+    render json: NPCSerializer.new(@npcs)
+  end
+
+  # GET /npcs/random
+  def random
+    @npc = NPC.random
+
+    render json: NPCSerializer.new(@npc)
   end
 
   # GET /npcs/1
   def show
-    render json: @npc
+    render json: NPCSerializer.new(@npc)
   end
 
   # POST /npcs
@@ -18,7 +25,7 @@ class NPCsController < ApplicationController
     @npc = NPC.new(npc_params)
 
     if @npc.save
-      render json: @npc, status: :created, location: @npc
+      render json: NPCSerializer.new(@npc), status: :created, location: @npc
     else
       render json: @npc.errors, status: :unprocessable_entity
     end
@@ -27,7 +34,7 @@ class NPCsController < ApplicationController
   # PATCH/PUT /npcs/1
   def update
     if @npc.update(npc_params)
-      render json: @npc
+      render json: NPCSerializer.new(@npc)
     else
       render json: @npc.errors, status: :unprocessable_entity
     end

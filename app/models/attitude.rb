@@ -13,6 +13,6 @@ class Attitude
   }
 
   def self.random
-    in_table_range(d6 + d6 + d6, TABLE)[:label]
+    in_table_range(d6 + d6 + d6, TABLE)
   end
 end

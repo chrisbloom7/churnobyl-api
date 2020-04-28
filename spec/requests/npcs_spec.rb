@@ -17,7 +17,7 @@ RSpec.describe "/npcs", type: :request do
   # NPC. As you add validations to NPC, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { age: "a child" }
   }
 
   let(:invalid_attributes) {
@@ -36,6 +36,13 @@ RSpec.describe "/npcs", type: :request do
     it "renders a successful response" do
       NPC.create! valid_attributes
       get npcs_url, headers: valid_headers, as: :json
+      expect(response).to be_successful
+    end
+  end
+
+  describe "GET /random" do
+    it "renders a successful response" do
+      get random_npcs_url, as: :json
       expect(response).to be_successful
     end
   end

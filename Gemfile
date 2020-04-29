@@ -31,6 +31,9 @@ gem 'rack-attack', '~> 6.3'
 # Fast JSON serializers
 gem 'fast_jsonapi', '~> 1.5'
 
+# API version routing
+gem 'versionist', '~> 2.0', '>= 2.0.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

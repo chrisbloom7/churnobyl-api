@@ -1,5 +1,5 @@
-module Api::V1
-  class NPCsController < ApiController
+module API::V1
+  class NPCsController < APIController
     before_action :set_npc, only: [:show, :update, :destroy]
 
     # GET /npcs

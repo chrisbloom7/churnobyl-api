@@ -12,7 +12,7 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/npcs", type: :request do
+RSpec.describe "/v1/npcs", type: :request do
   # This should return the minimal set of attributes required to create a valid
   # NPC. As you add validations to NPC, be sure to
   # adjust the attributes here as well.
@@ -32,40 +32,40 @@ RSpec.describe "/npcs", type: :request do
     {}
   }
 
-  describe "GET /index" do
+  describe "GET /v1/index" do
     it "renders a successful response" do
       NPC.create! valid_attributes
-      get npcs_url, headers: valid_headers, as: :json
+      get v1_npcs_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
 
-  describe "GET /random" do
+  describe "GET /v1/random" do
     it "renders a successful response" do
-      get random_npcs_url, as: :json
+      get random_v1_npcs_url, as: :json
       expect(response).to be_successful
     end
   end
 
-  describe "GET /show" do
+  describe "GET /v1/show" do
     it "renders a successful response" do
       npc = NPC.create! valid_attributes
-      get npc_url(npc), as: :json
+      get v1_npc_url(npc), as: :json
       expect(response).to be_successful
     end
   end
 
-  describe "POST /create" do
+  describe "POST /v1/create" do
     context "with valid parameters" do
       it "creates a new NPC" do
         expect {
-          post npcs_url,
+          post v1_npcs_url,
                params: { npc: valid_attributes }, headers: valid_headers, as: :json
         }.to change(NPC, :count).by(1)
       end
 
       it "renders a JSON response with the new npc" do
-        post npcs_url,
+        post v1_npcs_url,
              params: { npc: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including("application/json"))
@@ -75,13 +75,13 @@ RSpec.describe "/npcs", type: :request do
     context "with invalid parameters" do
       it "does not create a new NPC" do
         expect {
-          post npcs_url,
+          post v1_npcs_url,
                params: { npc: invalid_attributes }, as: :json
         }.to change(NPC, :count).by(0)
       end
 
       it "renders a JSON response with errors for the new npc" do
-        post npcs_url,
+        post v1_npcs_url,
              params: { npc: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq("application/json")
@@ -89,7 +89,7 @@ RSpec.describe "/npcs", type: :request do
     end
   end
 
-  describe "PATCH /update" do
+  describe "PATCH /v1/update" do
     context "with valid parameters" do
       let(:new_attributes) {
         skip("Add a hash of attributes valid for your model")
@@ -97,7 +97,7 @@ RSpec.describe "/npcs", type: :request do
 
       it "updates the requested npc" do
         npc = NPC.create! valid_attributes
-        patch npc_url(npc),
+        patch v1_npc_url(npc),
               params: { npc: invalid_attributes }, headers: valid_headers, as: :json
         npc.reload
         skip("Add assertions for updated state")
@@ -105,7 +105,7 @@ RSpec.describe "/npcs", type: :request do
 
       it "renders a JSON response with the npc" do
         npc = NPC.create! valid_attributes
-        patch npc_url(npc),
+        patch v1_npc_url(npc),
               params: { npc: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq("application/json")
@@ -115,7 +115,7 @@ RSpec.describe "/npcs", type: :request do
     context "with invalid parameters" do
       it "renders a JSON response with errors for the npc" do
         npc = NPC.create! valid_attributes
-        patch npc_url(npc),
+        patch v1_npc_url(npc),
               params: { npc: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq("application/json")
@@ -123,11 +123,11 @@ RSpec.describe "/npcs", type: :request do
     end
   end
 
-  describe "DELETE /destroy" do
+  describe "DELETE /v1/destroy" do
     it "destroys the requested npc" do
       npc = NPC.create! valid_attributes
       expect {
-        delete npc_url(npc), headers: valid_headers, as: :json
+        delete v1_npc_url(npc), headers: valid_headers, as: :json
       }.to change(NPC, :count).by(-1)
     end
   end

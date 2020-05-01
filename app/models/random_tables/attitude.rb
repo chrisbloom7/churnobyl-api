@@ -1,5 +1,6 @@
 module RandomTables
-  class Attitude < ActiveYaml::Base
+  class Attitude < ApplicationYamlHash
     include RandomTable
+    self.random_weight_column = :weight
   end
 end

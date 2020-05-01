@@ -1,5 +1,6 @@
 module RandomTables
-  class Origin < ActiveYaml::Base
+  class Origin < ApplicationYamlHash
     include RandomTable
+    self.random_weight_column = :weight
   end
 end

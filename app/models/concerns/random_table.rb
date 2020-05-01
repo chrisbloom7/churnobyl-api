@@ -4,16 +4,33 @@ module RandomTable
   extend ActiveSupport::Concern
 
   included do
-    set_root_path Rails.root.join("db")
+    class_attribute :random_id_column, default: :id
+    class_attribute :random_weight_column
   end
 
   class_methods do
-    # Randomly select a value from the source table.
+    # Randomly select a record from the source data. In order to be compatible with the most datasources
+    # it plucks all of the ids from the source and picks one at random. This has the downside of not being
+    # efficient with very large datasets.
+    #
+    # Returns a random instance of the including class
     def random
-      if self.first.attributes.keys.include?(:weight)
+      if random_weight_column?
         sample_weighted_table
       else
         sample_table
+      end
+    end
+
+    # Internal: Contruct a list of weighted ids, where ids will appear a number of times equal to their
+    # weight.
+    #
+    # Returns an array of weighted IDs
+    def weighted_ids
+      raise ArgumentError, "#{self.name}.random_weight_column is not set" unless random_weight_column?
+      self.pluck(self.random_id_column, self.random_weight_column).flat_map do |id, weight|
+        weight = weight.present? ? weight.to_i : 1
+        weight.to_i > 1 ? Array.new(weight, id) : id
       end
     end
 
@@ -21,15 +38,14 @@ module RandomTable
 
     # Sample the unweighted data table
     def sample_table
-      self.all.sample.value
+      ids = self.pluck(self.random_id_column)
+      self.find(ids.sample)
     end
 
     # Map the weighted values to a flat array and sample it
     def sample_weighted_table
-      weighted_table = self.all.flat_map do |entry|
-        entry.weight > 1 ? Array.new(entry.weight, entry.value) : entry.value
-      end
-      weighted_table.sample
+      ids = weighted_ids
+      self.find(ids.sample)
     end
   end
 end

@@ -1,5 +1,5 @@
 module RandomTables
-  class AgeGroup < ActiveYaml::Base
+  class AgeGroup < ApplicationYamlHash
     include RandomTable
   end
 end

@@ -1,0 +1,5 @@
+require 'rails_helper'
+
+RSpec.describe RandomTables::FirstName, type: :model do
+  it_behaves_like "random_table"
+end

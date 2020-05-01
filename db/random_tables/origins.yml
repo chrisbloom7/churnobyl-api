@@ -1,6 +1,6 @@
-- weight: 1
-  value: Earther
-- weight: 2
-  value: Martian
-- weight: 3
-  value: Belter
+- value: Earther
+  weight: 1
+- value: Martian
+  weight: 2
+- value: Belter
+  weight: 3

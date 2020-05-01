@@ -1,14 +1,14 @@
-- weight: 1
-  value: Very Hostile
-- weight: 3
-  value: Hostile
-- weight: 3
-  value: Standoffish
-- weight: 3
-  value: Neutral
-- weight: 3
-  value: Open
-- weight: 3
-  value: Friendly
-- weight: 1
-  value: Very Friendly
+- value: Very Hostile
+  weight: 1
+- value: Hostile
+  weight: 2
+- value: Standoffish
+  weight: 3
+- value: Neutral
+  weight: 3
+- value: Open
+  weight: 3
+- value: Friendly
+  weight: 2
+- value: Very Friendly
+  weight: 1

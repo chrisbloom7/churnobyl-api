@@ -1,5 +1,5 @@
 module RandomTables
-  class GenderExpression < ActiveYaml::Base
+  class GenderExpression < ApplicationYamlHash
     include RandomTable
   end
 end

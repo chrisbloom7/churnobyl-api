@@ -5,7 +5,7 @@ class NPC < ApplicationRecord
     npc.surname = RandomTables::Surname.random
     npc.age = RandomTables::AgeGroup.random
     npc.attitude = RandomTables::Attitude.random
-    npc.ancestry = RandomTables::Ancestry.random # TODO: rename to an·ces·try
+    npc.ancestry = RandomTables::Ancestry.random
     npc.gender = RandomTables::GenderExpression.random
     npc.origin = RandomTables::Origin.random
     npc

@@ -1,12 +1,5 @@
 module RandomTables
-  class Origin
+  class Origin < ActiveYaml::Base
     include RandomTable
-
-    HEADINGS = %w[1D6 RESULT].freeze
-    TABLE = {
-      1 => "Earther",
-      2..3 => "Martian",
-      4..6 => "Belter",
-    }
   end
 end

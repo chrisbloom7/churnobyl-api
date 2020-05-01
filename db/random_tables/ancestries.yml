@@ -1,0 +1,65 @@
+# Simplified version of Regional Population Groups defined at
+# https://www.23andme.com/ancestry-composition-guide/
+- value: East African
+- value: Ethiopian
+- value: Somali
+- value: Kenyan
+- value: Rwandan
+- value: North African
+- value: Algerian
+- value: Libyan
+- value: Moroccan
+- value: Tunisian
+- value: West African
+- value: Guinean
+- value: Liberian
+- value: Sierra Leonean
+- value: Nigerian
+- value: Central Asian
+- value: Bangladeshi
+- value: North Indianian
+- value: Pakistani
+- value: Afghan
+- value: East Asian
+- value: Japanese
+- value: Korean
+- value: North Asian
+- value: Manchurian
+- value: Mongolian
+- value: Siberian
+- value: South Asian
+- value: Southern Indian
+- value: Sri Lankan
+- value: Malayali
+- value: Southeast Asian
+- value: Vietnamese
+- value: Filipino
+- value: Indonesian
+- value: Chinese
+- value: West Asian
+- value: Arab
+- value: Egyptian
+- value: Iranian
+- value: Eastern European
+- value: Polish
+- value: Czech
+- value: Russian
+- value: Ukrainian
+- value: Northern European
+- value: British
+- value: Irish
+- value: French
+- value: German
+- value: Scandinavian
+- value: Southern European
+- value: Greek
+- value: Italian
+- value: Spanish
+- value: Portuguese
+- value: Melanesian
+- value: Indigenous Australian
+- value: Papuan
+- value: Native American
+- value: North American
+- value: Central America
+- value: South America

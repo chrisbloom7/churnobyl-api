@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_29_195848) do
+ActiveRecord::Schema.define(version: 2020_05_01_055135) do
 
   create_table "npcs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "age"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2020_04_29_195848) do
     t.string "origin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "first_name"
+    t.string "surname"
   end
 
 end

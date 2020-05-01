@@ -1,5 +1,5 @@
 module RandomTables
-  class Attitude < ActiveYaml::Base
+  class GenderExpression < ActiveYaml::Base
     include RandomTable
   end
 end

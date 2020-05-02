@@ -1,0 +1,10 @@
+Description:
+    Generates a new RandomTable model and yaml file
+
+Example:
+    rails generate random_table Dogs
+
+    This will create:
+        app/models/random_tables/dogs.rb
+        db/random_tables/dogs.yml
+        spec/models/random_tables/dogs_spec.rb

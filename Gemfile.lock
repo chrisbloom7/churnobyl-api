@@ -69,6 +69,9 @@ GEM
     fast_jsonapi (1.5)
       activesupport (>= 4.2)
     ffi (1.12.2)
+    generator_spec (0.9.4)
+      activesupport (>= 3.0.0)
+      railties (>= 3.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.8.2)
@@ -184,6 +187,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   fast_jsonapi (~> 1.5)
+  generator_spec
   listen (>= 3.0.5, < 3.2)
   mysql2 (>= 0.4.4)
   puma (~> 4.1)

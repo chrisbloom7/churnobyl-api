@@ -1,0 +1,6 @@
+- value: <%= class_name %>1<%- if weighted? %>
+  weight: 1<% end %>
+- value: <%= class_name %>2<%- if weighted? %>
+  weight: 1<% end %>
+- value: <%= class_name %>3<%- if weighted? %>
+  weight: 1<% end %>

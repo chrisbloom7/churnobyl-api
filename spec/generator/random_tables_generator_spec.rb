@@ -30,7 +30,7 @@ RSpec.describe RandomTableGenerator, type: :generator do
     end
 
     it "creates a random table yaml file" do
-      assert_file "db/random_tables/something.yml" do |content|
+      assert_file "db/random_tables/somethings.yml" do |content|
         assert_match(/^- value: Something1$/, content)
         assert_match(/^- value: Something2$/, content)
         assert_match(/^- value: Something3$/, content)
@@ -52,7 +52,7 @@ RSpec.describe RandomTableGenerator, type: :generator do
     end
 
     it "creates a random table yaml file" do
-      assert_file "db/random_tables/something.yml" do |content|
+      assert_file "db/random_tables/somethings.yml" do |content|
         assert_match(/^- value: Something1$/, content)
         assert_match(/^- value: Something2$/, content)
         assert_match(/^- value: Something3$/, content)
@@ -74,7 +74,7 @@ RSpec.describe RandomTableGenerator, type: :generator do
     end
 
     it "creates a random table yaml file" do
-      assert_file "db/random_tables/something.yml" do |content|
+      assert_file "db/random_tables/somethings.yml" do |content|
         assert_match(/^- value: Something1$/, content)
         assert_match(/^- value: Something2$/, content)
         assert_match(/^- value: Something3$/, content)

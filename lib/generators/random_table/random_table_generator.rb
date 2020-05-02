@@ -6,9 +6,9 @@ class RandomTableGenerator < Rails::Generators::NamedBase
                                       desc: "Set random_weight_column to the named column (implies --weighted)"
 
   def copy_random_table_file
-    template "random_table_spec.rb", "spec/models/random_tables/#{file_name}_spec.rb"
-    template "random_table.rb", "app/models/random_tables/#{file_name}.rb"
-    template "random_table.yml", "db/random_tables/#{file_name}.yml"
+    template "random_table_spec.rb", "spec/models/random_tables/#{file_name.singularize}_spec.rb"
+    template "random_table.rb", "app/models/random_tables/#{file_name.singularize}.rb"
+    template "random_table.yml", "db/random_tables/#{plural_file_name}.yml"
   end
 
   def weighted?

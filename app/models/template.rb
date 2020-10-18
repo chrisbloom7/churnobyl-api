@@ -6,7 +6,6 @@ class Template < ApplicationRecord
 
   def execute
     data = generator_klass.respond_to?(:random) ? generator_klass.random : ""
-    data = data.value if data.respond_to?(:value)
     { label: label, data: data }
   end
 

@@ -34,6 +34,7 @@ RSpec.describe "/v1/npcs", type: :request do
 
   describe "GET /v1/index" do
     it "renders a successful response" do
+      skip("Deprecated")
       NPC.create! valid_attributes
       get v1_npcs_url, headers: valid_headers, as: :json
       expect(response).to be_successful
@@ -42,6 +43,7 @@ RSpec.describe "/v1/npcs", type: :request do
 
   describe "GET /v1/random" do
     it "renders a successful response" do
+      skip("Deprecated")
       get random_v1_npcs_url, as: :json
       expect(response).to be_successful
     end
@@ -49,6 +51,7 @@ RSpec.describe "/v1/npcs", type: :request do
 
   describe "GET /v1/show" do
     it "renders a successful response" do
+      skip("Deprecated")
       npc = NPC.create! valid_attributes
       get v1_npc_url(npc), as: :json
       expect(response).to be_successful
@@ -58,6 +61,7 @@ RSpec.describe "/v1/npcs", type: :request do
   describe "POST /v1/create" do
     context "with valid parameters" do
       it "creates a new NPC" do
+        skip("Deprecated")
         expect {
           post v1_npcs_url,
                params: { npc: valid_attributes }, headers: valid_headers, as: :json
@@ -65,6 +69,7 @@ RSpec.describe "/v1/npcs", type: :request do
       end
 
       it "renders a JSON response with the new npc" do
+        skip("Deprecated")
         post v1_npcs_url,
              params: { npc: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
@@ -74,6 +79,7 @@ RSpec.describe "/v1/npcs", type: :request do
 
     context "with invalid parameters" do
       it "does not create a new NPC" do
+        skip("Deprecated")
         expect {
           post v1_npcs_url,
                params: { npc: invalid_attributes }, as: :json
@@ -81,6 +87,7 @@ RSpec.describe "/v1/npcs", type: :request do
       end
 
       it "renders a JSON response with errors for the new npc" do
+        skip("Deprecated")
         post v1_npcs_url,
              params: { npc: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
@@ -96,6 +103,7 @@ RSpec.describe "/v1/npcs", type: :request do
       }
 
       it "updates the requested npc" do
+        skip("Deprecated")
         npc = NPC.create! valid_attributes
         patch v1_npc_url(npc),
               params: { npc: invalid_attributes }, headers: valid_headers, as: :json
@@ -104,6 +112,7 @@ RSpec.describe "/v1/npcs", type: :request do
       end
 
       it "renders a JSON response with the npc" do
+        skip("Deprecated")
         npc = NPC.create! valid_attributes
         patch v1_npc_url(npc),
               params: { npc: invalid_attributes }, headers: valid_headers, as: :json
@@ -114,6 +123,7 @@ RSpec.describe "/v1/npcs", type: :request do
 
     context "with invalid parameters" do
       it "renders a JSON response with errors for the npc" do
+        skip("Deprecated")
         npc = NPC.create! valid_attributes
         patch v1_npc_url(npc),
               params: { npc: invalid_attributes }, headers: valid_headers, as: :json
@@ -125,6 +135,7 @@ RSpec.describe "/v1/npcs", type: :request do
 
   describe "DELETE /v1/destroy" do
     it "destroys the requested npc" do
+      skip("Deprecated")
       npc = NPC.create! valid_attributes
       expect {
         delete v1_npc_url(npc), headers: valid_headers, as: :json

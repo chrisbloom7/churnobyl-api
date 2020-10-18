@@ -20,14 +20,6 @@ class Collection < ApplicationRecord
     @data = templates.map(&:execute)
   end
 
-  def to_json(title: default_label)
-    data = {}
-    data[:title] = title if title.present?
-    data[:data] = execute
-
-    data.to_json
-  end
-
   def to_table(title: default_label, headings: nil)
     Terminal::Table.new do |t|
       t.title = title if title.present?

@@ -13,7 +13,7 @@ RSpec.describe Collection, type: :model do
     end
   end
 
-  let(:valid_attributes) { { name: "name", default_label: "default" } }
+  let(:valid_attributes) { { name: "c1", default_label: "My Collection" } }
 
   describe ".new" do
     it "requires a name" do
@@ -39,16 +39,82 @@ RSpec.describe Collection, type: :model do
   end
 
   describe "#execute" do
-    subject { Collection.create!(valid_attributes) }
+    subject do
+      templates = [
+        Template.new(label: "First", generator: "Random"),
+        Template.new(label: "Second", generator: "RandomTwo"),
+      ]
+      Collection.new(valid_attributes.merge(templates: templates))
+    end
 
     it "calls execute on each attached template" do
-      subject.templates << Template.new(label: "First", generator: "Random")
-      subject.templates << Template.new(label: "Second", generator: "RandomTwo")
-      results = subject.execute
-      expect(results).to be_an(Array)
-      expect(results.size).to eq(2)
-      expect(results[0]).to include(label: "First", data: "random")
-      expect(results[1]).to include(label: "Second", data: "random 2")
+      expect(subject.execute).to be_an(Array)
+      expect(subject.execute.size).to eq(2)
+      expect(subject.execute[0]).to include(label: "First", data: "random")
+      expect(subject.execute[1]).to include(label: "Second", data: "random 2")
+    end
+
+    it "memoizes the executed data" do
+      template1 = Template.new(label: "First", generator: "Random")
+      allow(template1).to receive(:execute).and_return("1111", "2222")
+      template2 = Template.new(label: "Second", generator: "RandomTwo")
+      allow(template2).to receive(:execute).and_return("3333", "4444")
+      subject.templates = [template1, template2]
+      expect(subject.execute).to eq(subject.execute)
+    end
+  end
+
+  describe "#to_table" do
+    subject do
+      templates = [
+        Template.new(label: "First", generator: "Random"),
+        Template.new(label: "Second", generator: "RandomTwo"),
+      ]
+      Collection.new(valid_attributes.merge(templates: templates))
+    end
+
+    it "returns a the data as an ASCII table" do
+      expect(subject.to_table).to eq <<~TABLE.chomp
+        +--------+----------+
+        |   My Collection   |
+        +--------+----------+
+        | First  | random   |
+        | Second | random 2 |
+        +--------+----------+
+      TABLE
+    end
+
+    it "can accept a custom table title" do
+      expect(subject.to_table(title: "Different Title")).to eq <<~TABLE.chomp
+        +--------+----------+
+        |  Different Title  |
+        +--------+----------+
+        | First  | random   |
+        | Second | random 2 |
+        +--------+----------+
+      TABLE
+    end
+
+    it "can have no table title" do
+      expect(subject.to_table(title: nil)).to eq <<~TABLE.chomp
+        +--------+----------+
+        | First  | random   |
+        | Second | random 2 |
+        +--------+----------+
+      TABLE
+    end
+
+    it "can accept a custom set of column headers" do
+      expect(subject.to_table(headings: %w[One Two])).to eq <<~TABLE.chomp
+        +--------+----------+
+        |   My Collection   |
+        +--------+----------+
+        | One    | Two      |
+        +--------+----------+
+        | First  | random   |
+        | Second | random 2 |
+        +--------+----------+
+      TABLE
     end
   end
 end

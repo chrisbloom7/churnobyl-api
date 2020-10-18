@@ -165,10 +165,13 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    terminal-table (1.8.0)
+      unicode-display_width (~> 1.1, >= 1.1.1)
     thor (1.0.1)
     thread_safe (0.3.6)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
+    unicode-display_width (1.7.0)
     versionist (2.0.1)
       activesupport (>= 3)
       railties (>= 3)
@@ -197,6 +200,7 @@ DEPENDENCIES
   rspec-rails (~> 4.0.0)
   spring
   spring-watcher-listen (~> 2.0.0)
+  terminal-table (~> 1.8)
   tzinfo-data
   versionist (~> 2.0, >= 2.0.1)
 

@@ -28,9 +28,6 @@ gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 # Prevent common attack vectors and allow rate limiting
 gem 'rack-attack', '~> 6.3'
 
-# Fast JSON serializers
-gem 'fast_jsonapi', '~> 1.5'
-
 # API version routing
 gem 'versionist', '~> 2.0', '>= 2.0.1'
 

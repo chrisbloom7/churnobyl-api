@@ -25,7 +25,7 @@ RSpec.describe RandomTableGenerator, type: :generator do
     it "creates a random table model spec" do
       assert_file "spec/models/random_tables/something_spec.rb" do |content|
         assert_match(/^RSpec.describe RandomTables::Something, type: :model/, content)
-        assert_match(/^  it_behaves_like "random_table"$/, content)
+        assert_match(/^  it_behaves_like "a simple random table"$/, content)
       end
     end
 

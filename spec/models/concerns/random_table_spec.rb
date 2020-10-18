@@ -4,8 +4,9 @@ RSpec.describe RandomTable, type: :concern do
   class ExampleTable < ActiveHash::Base
     include RandomTable
     self.data = [
-      { id: 1, weight: 1 },
-      { id: 2, weight: 2 }
+      { id: 1, weight: 1, value: "one" },
+      { id: 2, weight: 2, value: "two" },
+      { id: 3, weight: 3, value: "three" },
     ]
   end
 
@@ -48,8 +49,8 @@ RSpec.describe RandomTable, type: :concern do
   end
 
   describe ".random" do
-    it "returns a random instance" do
-      expect(ExampleTable.random).to be_an_instance_of(ExampleTable)
+    it "returns a random value" do
+      expect(ExampleTable.random).to be_a(String)
     end
 
     context "when random_weight_column is set" do
@@ -60,7 +61,7 @@ RSpec.describe RandomTable, type: :concern do
         ExampleTable.random_weight_column = :weight
       end
 
-      it "can use a weighted array of IDs to select a random record" do
+      it "can use a weighted array of IDs to select a random value" do
         expect(ExampleTable).to receive(:weighted_ids).and_return(weighted_ids)
         expect(weighted_ids).to receive(:sample).and_return(sampled_id)
         expect(ExampleTable).to receive(:find).with(sampled_id)
@@ -102,21 +103,21 @@ RSpec.describe RandomTable, type: :concern do
       end
 
       it "returns an array where ids will appear a number of times equal to their weight" do
-        expect(ExampleTable.weighted_ids).to contain_exactly(1, 2, 2)
+        expect(ExampleTable.weighted_ids).to contain_exactly(1, 2, 2, 3, 3, 3)
       end
 
       it "defaults to a weight of 1 if no weight is provided" do
-        ExampleTable.data = @default_data + [{ id: 3 }]
-        expect(ExampleTable.weighted_ids).to contain_exactly(1, 2, 2, 3)
+        ExampleTable.data = @default_data + [{ id: 4 }]
+        expect(ExampleTable.weighted_ids).to contain_exactly(1, 2, 2, 3, 3, 3, 4)
       end
 
       it "converts weights to integers" do
         ExampleTable.data = @default_data + [
-          { id: 3, weight: "a" },
-          { id: 4, weight: "2" },
-          { id: 5, weight: 0.5 }
+          { id: 4, weight: "a" },
+          { id: 5, weight: "2" },
+          { id: 6, weight: 0.5 }
         ]
-        expect(ExampleTable.weighted_ids).to contain_exactly(1, 2, 2, 3, 4, 4, 5)
+        expect(ExampleTable.weighted_ids).to contain_exactly(1, 2, 2, 3, 3, 3, 4, 5, 5, 6)
       end
     end
   end

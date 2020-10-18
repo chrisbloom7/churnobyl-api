@@ -39,13 +39,13 @@ module RandomTable
     # Sample the unweighted data table
     def sample_table
       ids = self.pluck(self.random_id_column)
-      self.find(ids.sample)
+      self.find(ids.sample)&.value
     end
 
     # Map the weighted values to a flat array and sample it
     def sample_weighted_table
       ids = weighted_ids
-      self.find(ids.sample)
+      self.find(ids.sample)&.value
     end
   end
 end

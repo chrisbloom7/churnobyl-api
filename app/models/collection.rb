@@ -10,8 +10,13 @@ class Collection < ApplicationRecord
     find_by(name: name)
   end
 
+  def reset
+    remove_instance_variable(:@data) if instance_variable_defined?(:@data)
+    self
+  end
+
   def execute
-    return @data if defined?(@data)
+    return @data if instance_variable_defined?(:@data)
     @data = templates.map(&:execute)
   end
 

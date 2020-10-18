@@ -38,6 +38,28 @@ RSpec.describe Collection, type: :model do
     end
   end
 
+  describe "#reset" do
+    subject { Collection.new(valid_attributes) }
+
+    it "unmemoizes the execute method" do
+      template1 = Template.new(label: "First", generator: "Random")
+      allow(template1).to receive(:execute).and_return("1111", "2222")
+      template2 = Template.new(label: "Second", generator: "RandomTwo")
+      allow(template2).to receive(:execute).and_return("3333", "4444")
+      subject.templates = [template1, template2]
+
+      memoized = subject.execute
+      expect(memoized).to eq(subject.execute)
+
+      subject.reset
+      expect(memoized).not_to eq(subject.execute)
+    end
+
+    it "returns self" do
+      expect(subject.reset).to eq(subject)
+    end
+  end
+
   describe "#execute" do
     subject do
       templates = [
@@ -60,7 +82,9 @@ RSpec.describe Collection, type: :model do
       template2 = Template.new(label: "Second", generator: "RandomTwo")
       allow(template2).to receive(:execute).and_return("3333", "4444")
       subject.templates = [template1, template2]
-      expect(subject.execute).to eq(subject.execute)
+
+      memoized = subject.execute
+      expect(memoized).to eq(subject.execute)
     end
   end
 

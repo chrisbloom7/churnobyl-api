@@ -1,12 +1,12 @@
 module RandomTables
   class MixedAncestry
-    # Number of times to try to get max unique names
-    MAX_WEIGHT_ATTEMPTS = 100
+    # Number of times to try to get the selected number of unique ancestries
+    MAX_UNIQUE_ATTEMPTS = 3
 
     # Generate a string of random mixed ancestries.
     #
-    # max - the max number of ancestry to select; may select fewer. (default: 2)
-    # weight - change of mixed ancestry, between 0 and 1 (default: 0.5)
+    # max - max ancestries; may select fewer. (default: 2, min: 1, max: 100)
+    # weight - chance of > 1 ancestries. (default: 0.5, min: 0, max: 1)
     # join - whether to return a string instead of an array. (default: true)
     # separator - the string to join the ancestries on. (default: "/")
     #
@@ -24,15 +24,13 @@ module RandomTables
 
       ancestries = []
       count = weighted_random_count(max, weight)
-      count.times { ancestries << get_ancestry }
-      ancestries.uniq!
+      select_unique_ancestries!(count, ancestries)
 
       # We will try up to MAX_WEIGHT_ATTEMPTS times to get the max num of names
       if ancestries.size < count
-        n = count
-        while ancestries.size < count && n < MAX_WEIGHT_ATTEMPTS
-          ancestry = get_ancestry
-          ancestries << ancestry unless ancestries.include?(ancestry)
+        n = 1
+        while ancestries.size < count && n < MAX_UNIQUE_ATTEMPTS
+          select_unique_ancestries!(count - ancestries.size, ancestries)
           n += 1
         end
       end
@@ -45,6 +43,11 @@ module RandomTables
 
     def self.get_ancestry
       RandomTables::Ancestry.random
+    end
+
+    def self.select_unique_ancestries!(count, ancestries)
+      count.times { ancestries << get_ancestry }
+      ancestries.uniq!
     end
 
     # h/t https://gist.github.com/O-I/3e0654509dd8057b539a

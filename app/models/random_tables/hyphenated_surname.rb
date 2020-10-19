@@ -1,12 +1,12 @@
 module RandomTables
   class HyphenatedSurname
-    # Number of times to try to get max unique names
-    MAX_WEIGHT_ATTEMPTS = 100
+    # Number of times to try to get the selected number of unique surnames
+    MAX_UNIQUE_ATTEMPTS = 3
 
     # Generate a string of hyphenated surnames.
     #
-    # max - the max number of surnames to select; may select fewer. (default: 2)
-    # weight - change of hyphenation, between 0 and 1 (default: 0.25)
+    # max - max surnames; may select fewer. (default: 2, min: 1, max: 100)
+    # weight - chance of > 1 surnames. (default: 0.25, min: 0, max: 1)
     # join - whether to return a string instead of an array. (default: true)
     # separator - the string to join the surnames on. (default: "-")
     #
@@ -18,21 +18,19 @@ module RandomTables
         raise ArgumentError, "Invalid max (must be between 1 and 100)"
       end
 
-      if weight < 0.0 || weight > 1
+      if weight < 0 || weight > 1
         raise ArgumentError, "Invalid weight (must be between 0.0 and 1)"
       end
 
       surnames = []
       count = weighted_random_count(max, weight)
-      count.times { surnames << get_surname }
-      surnames.uniq!
+      select_unique_surnames!(count, surnames)
 
       # We will try up to MAX_WEIGHT_ATTEMPTS times to get the max num names
       if surnames.size < count
-        n = count
-        while surnames.size < count && n < MAX_WEIGHT_ATTEMPTS
-          surname = get_surname
-          surnames << surname unless surnames.include?(surname)
+        n = 1
+        while surnames.size < count && n < MAX_UNIQUE_ATTEMPTS
+          select_unique_surnames!(count - surnames.size, surnames)
           n += 1
         end
       end
@@ -45,6 +43,11 @@ module RandomTables
 
     def self.get_surname
       RandomTables::Surname.random
+    end
+
+    def self.select_unique_surnames!(count, surnames)
+      count.times { surnames << get_surname }
+      surnames.uniq!
     end
 
     # h/t https://gist.github.com/O-I/3e0654509dd8057b539a

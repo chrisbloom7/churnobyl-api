@@ -21,14 +21,6 @@ class Template < ApplicationRecord
   end
 
   def generator_klass
-    return nil unless generator_exists?
-    RandomTables.const_get(generator)
-  end
-
-  def generator_exists?
-    RandomTables.const_defined?(generator) &&
-      RandomTables.const_get(generator).is_a?(Class)
-  rescue NameError
-    false
+    RandomTables.klass(generator)
   end
 end

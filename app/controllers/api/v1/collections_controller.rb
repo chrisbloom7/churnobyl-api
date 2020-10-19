@@ -13,7 +13,10 @@ class API::V1::CollectionsController < ApplicationController
     data[:name] = @collection.name
     data[:default_label] = @collection.default_label
     data[:templates] = @collection.templates.map do |t|
-      { label: t.label, generator: t.generator }
+      {
+        label: t.label,
+        generator: { id: t.generator.tableize, name: t.generator },
+      }
     end
     render json: data
   end

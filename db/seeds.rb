@@ -8,8 +8,8 @@
 
 puts "Generating seed data"
 
-unless Collection.named("npc").present?
-  puts "Creating npc collection"
+unless Collection.named("basic_npc").present?
+  puts "Creating basic_npc collection"
 
   templates = []
   templates << Template.new(label: "First Name", generator: "FirstName")
@@ -18,16 +18,16 @@ unless Collection.named("npc").present?
   templates << Template.new(label: "Attitude",   generator: "Attitude")
   templates << Template.new(label: "Ancestry",   generator: "MixedAncestry")
   templates << Template.new(label: "Gender",     generator: "GenderExpression")
-  templates << Template.new(label: "Origin",     generator: "Origin")
-  Collection.create!(name: "npc",
-                     default_label: "NPC",
+
+  Collection.create!(name: "basic_npc",
+                     default_label: "Basic NPC",
                      templates: templates)
 else
-  puts "npc collection already exists"
+  puts "basic_npc collection already exists"
 end
 
-unless Collection.named("statted_npc").present?
-  puts "Creating statted_npc collection"
+unless Collection.named("expanse_npc").present?
+  puts "Creating expanse_npc collection"
 
   templates = []
   templates << Template.new(label: "First Name", generator: "FirstName")
@@ -38,22 +38,50 @@ unless Collection.named("statted_npc").present?
   templates << Template.new(label: "Gender",     generator: "GenderExpression")
   templates << Template.new(label: "Origin",     generator: "Origin")
 
-  templates << Template.new(label: "Accuracy",      generator: "AbilityScore")
-  templates << Template.new(label: "Communication", generator: "AbilityScore")
-  templates << Template.new(label: "Constitution",  generator: "AbilityScore")
-  templates << Template.new(label: "Dexterity",     generator: "AbilityScore")
-  templates << Template.new(label: "Fighting",      generator: "AbilityScore")
-  templates << Template.new(label: "Intelligence",  generator: "AbilityScore")
-  templates << Template.new(label: "Perception",    generator: "AbilityScore")
-  templates << Template.new(label: "Strength",      generator: "AbilityScore")
-  templates << Template.new(label: "Willpower",     generator: "AbilityScore")
+  Collection.create!(name: "expanse_npc",
+                     default_label: "Expanse NPC",
+                     templates: templates)
+else
+  puts "expanse_npc collection already exists"
+end
 
-  Collection.create!(name: "statted_npc",
-                     default_label: "Statted NPC",
+unless Collection.named("statted_expanse_npc").present?
+  puts "Creating statted_expanse_npc collection"
+
+  templates = []
+  templates << Template.new(label: "First Name", generator: "FirstName")
+  templates << Template.new(label: "Surname",    generator: "HyphenatedSurname")
+  templates << Template.new(label: "Age",        generator: "AgeGroup")
+  templates << Template.new(label: "Attitude",   generator: "Attitude")
+  templates << Template.new(label: "Ancestry",   generator: "MixedAncestry")
+  templates << Template.new(label: "Gender",     generator: "GenderExpression")
+  templates << Template.new(label: "Origin",     generator: "Origin")
+
+  templates << Template.new(label: "Accuracy",
+                            generator: "Age::AbilityScore")
+  templates << Template.new(label: "Communication",
+                            generator: "Age::AbilityScore")
+  templates << Template.new(label: "Constitution",
+                            generator: "Age::AbilityScore")
+  templates << Template.new(label: "Dexterity",
+                            generator: "Age::AbilityScore")
+  templates << Template.new(label: "Fighting",
+                            generator: "Age::AbilityScore")
+  templates << Template.new(label: "Intelligence",
+                            generator: "Age::AbilityScore")
+  templates << Template.new(label: "Perception",
+                            generator: "Age::AbilityScore")
+  templates << Template.new(label: "Strength",
+                            generator: "Age::AbilityScore")
+  templates << Template.new(label: "Willpower",
+                            generator: "Age::AbilityScore")
+
+  Collection.create!(name: "statted_expanse_npc",
+                     default_label: "Statted Expanse NPC",
                      templates: templates)
 
 else
-  puts "statted_npc collection already exists"
+  puts "statted_expanse_npc collection already exists"
 end
 
 puts "Seeding complete"

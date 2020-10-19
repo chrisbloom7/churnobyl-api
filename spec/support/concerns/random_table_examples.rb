@@ -5,7 +5,9 @@ require 'rails_helper'
 shared_examples_for "a simple random table" do
   describe ".random" do
     it "returns a random value from the data table" do
-      expect(described_class.all.map(&:value)).to include(described_class.random)
+      random_value = described_class.random
+      expect(random_value).to_not be_nil
+      expect(described_class.all.map(&:value)).to include(random_value)
     end
   end
 end

@@ -10,7 +10,9 @@
 
 puts 'Generating seed data'
 
-unless Collection.named('basic_npc').present?
+if Collection.named('basic_npc').present?
+  puts 'Collection basic_npc already exists'
+else
   puts 'Creating basic_npc collection'
 
   templates = []
@@ -24,11 +26,11 @@ unless Collection.named('basic_npc').present?
   Collection.create!(name: 'basic_npc',
                      default_label: 'Basic NPC',
                      templates: templates)
-else
-  puts 'basic_npc collection already exists'
 end
 
-unless Collection.named('expanse_npc').present?
+if Collection.named('expanse_npc').present?
+  puts 'Collection expanse_npc already exists'
+else
   puts 'Creating expanse_npc collection'
 
   templates = []
@@ -43,11 +45,11 @@ unless Collection.named('expanse_npc').present?
   Collection.create!(name: 'expanse_npc',
                      default_label: 'Expanse NPC',
                      templates: templates)
-else
-  puts 'expanse_npc collection already exists'
 end
 
-unless Collection.named('statted_expanse_npc').present?
+if Collection.named('statted_expanse_npc').present?
+  puts 'Collection statted_expanse_npc already exists'
+else
   puts 'Creating statted_expanse_npc collection'
 
   templates = []
@@ -82,8 +84,6 @@ unless Collection.named('statted_expanse_npc').present?
                      default_label: 'Statted Expanse NPC',
                      templates: templates)
 
-else
-  puts 'statted_expanse_npc collection already exists'
 end
 
 puts 'Seeding complete'

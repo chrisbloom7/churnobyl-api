@@ -7,7 +7,7 @@ class ExampleTable < ActiveHash::Base
   self.data = [
     { id: 1, weight: 1, value: 'one' },
     { id: 2, weight: 2, value: 'two' },
-    { id: 3, weight: 3, value: 'three' },
+    { id: 3, weight: 3, value: 'three' }
   ]
 end
 
@@ -88,9 +88,9 @@ RSpec.describe RandomTable, type: :concern do
   describe '.weighted_ids' do
     context 'when random_weight_column is not set' do
       it 'raises an error' do
-        expect {
+        expect do
           ExampleTable.weighted_ids
-        }.to raise_error(ArgumentError, 'ExampleTable.random_weight_column is not set')
+        end.to raise_error(ArgumentError, 'ExampleTable.random_weight_column is not set')
       end
     end
 

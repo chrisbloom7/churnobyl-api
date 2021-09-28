@@ -111,27 +111,27 @@ RSpec.describe RandomTables::MixedAncestry, type: :model do
     end
 
     it 'raises an error if the max is less than 1' do
-      expect {
+      expect do
         described_class.random(max: 0)
-      }.to raise_error('Invalid max (must be between 1 and 100)')
+      end.to raise_error('Invalid max (must be between 1 and 100)')
     end
 
     it 'raises an error if the max is greater than 100' do
-      expect {
+      expect do
         described_class.random(max: 101)
-      }.to raise_error('Invalid max (must be between 1 and 100)')
+      end.to raise_error('Invalid max (must be between 1 and 100)')
     end
 
     it 'raises an error if the weight is less than 0' do
-      expect {
+      expect do
         described_class.random(weight: -1)
-      }.to raise_error('Invalid weight (must be between 0.0 and 1)')
+      end.to raise_error('Invalid weight (must be between 0.0 and 1)')
     end
 
     it 'raises an error if the weight is greater than 1' do
-      expect {
+      expect do
         described_class.random(weight: 1.1)
-      }.to raise_error('Invalid weight (must be between 0.0 and 1)')
+      end.to raise_error('Invalid weight (must be between 0.0 and 1)')
     end
   end
 end

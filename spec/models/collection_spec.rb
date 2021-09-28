@@ -2,15 +2,17 @@
 
 require 'rails_helper'
 
-class RandomTables::RandomTest
-  def self.random
-    'random'
+module RandomTables
+  class RandomTest
+    def self.random
+      'random'
+    end
   end
-end
 
-class RandomTables::RandomTestTwo
-  def self.random
-    'random 2'
+  class RandomTestTwo
+    def self.random
+      'random 2'
+    end
   end
 end
 
@@ -66,7 +68,7 @@ RSpec.describe Collection, type: :model do
     subject do
       templates = [
         Template.new(label: 'First', generator: 'RandomTest'),
-        Template.new(label: 'Second', generator: 'RandomTestTwo'),
+        Template.new(label: 'Second', generator: 'RandomTestTwo')
       ]
       Collection.new(valid_attributes.merge(templates: templates))
     end
@@ -94,7 +96,7 @@ RSpec.describe Collection, type: :model do
     subject do
       templates = [
         Template.new(label: 'First', generator: 'RandomTest'),
-        Template.new(label: 'Second', generator: 'RandomTestTwo'),
+        Template.new(label: 'Second', generator: 'RandomTestTwo')
       ]
       Collection.new(valid_attributes.merge(templates: templates))
     end

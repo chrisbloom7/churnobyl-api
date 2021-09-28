@@ -5,7 +5,7 @@ require 'generator_spec'
 require 'generators/random_table/random_table_generator'
 
 RSpec.describe RandomTableGenerator, type: :generator do
-  destination File.expand_path('../../../tmp/spec', __FILE__)
+  destination File.expand_path('../../tmp/spec', __dir__)
 
   before do
     prepare_destination
@@ -13,7 +13,7 @@ RSpec.describe RandomTableGenerator, type: :generator do
   end
 
   context 'with no options' do
-    let(:generator_arguments) { %w(something) }
+    let(:generator_arguments) { %w[something] }
 
     it 'creates a random table model' do
       assert_file 'app/models/random_tables/something.rb' do |content|
@@ -42,7 +42,7 @@ RSpec.describe RandomTableGenerator, type: :generator do
   end
 
   context 'with the --weighted option' do
-    let(:generator_arguments) { %w(something --weighted) }
+    let(:generator_arguments) { %w[something --weighted] }
 
     it 'creates a random table model with random_weight_column set to :weight' do
       assert_file 'app/models/random_tables/something.rb' do |content|
@@ -64,7 +64,7 @@ RSpec.describe RandomTableGenerator, type: :generator do
   end
 
   context 'with the --random_weight_column=weight_column option' do
-    let(:generator_arguments) { %w(something --random_weight_column=weight_column) }
+    let(:generator_arguments) { %w[something --random_weight_column=weight_column] }
 
     it 'creates a random table model with random_weight_column set to :weight_column' do
       assert_file 'app/models/random_tables/something.rb' do |content|

@@ -17,13 +17,9 @@ module RandomTables
       # then returns the array of selected surname instances instead. In either
       # case, only unique surnames will be included in the return value.
       def random(max: 2, weight: 0.25, join: true, separator: '-')
-        if max < 1 || max > 100
-          raise ArgumentError, 'Invalid max (must be between 1 and 100)'
-        end
+        raise ArgumentError, 'Invalid max (must be between 1 and 100)' if max < 1 || max > 100
 
-        if weight < 0 || weight > 1
-          raise ArgumentError, 'Invalid weight (must be between 0.0 and 1)'
-        end
+        raise ArgumentError, 'Invalid weight (must be between 0.0 and 1)' if weight.negative? || weight > 1
 
         surnames = []
         count = weighted_random_count(max, weight)

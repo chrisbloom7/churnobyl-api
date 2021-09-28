@@ -29,8 +29,8 @@ module RandomTable
     #
     # Returns an array of weighted IDs
     def weighted_ids
-      raise ArgumentError, "#{self.name}.random_weight_column is not set" unless random_weight_column?
-      self.pluck(self.random_id_column, self.random_weight_column).flat_map do |id, weight|
+      raise ArgumentError, "#{name}.random_weight_column is not set" unless random_weight_column?
+      pluck(random_id_column, random_weight_column).flat_map do |id, weight|
         weight = weight.present? ? weight.to_i : 1
         weight.to_i > 1 ? Array.new(weight, id) : id
       end
@@ -40,14 +40,14 @@ module RandomTable
 
     # Sample the unweighted data table
     def sample_table
-      ids = self.pluck(self.random_id_column)
-      self.find(ids.sample)&.value
+      ids = pluck(random_id_column)
+      find(ids.sample)&.value
     end
 
     # Map the weighted values to a flat array and sample it
     def sample_weighted_table
       ids = weighted_ids
-      self.find(ids.sample)&.value
+      find(ids.sample)&.value
     end
   end
 end

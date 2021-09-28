@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RandomTables
-  extend self
+  module_function
 
   # All discoverable random tables should be listed here
   REGISTRY = [
@@ -14,8 +14,8 @@ module RandomTables
     HyphenatedSurname,
     MixedAncestry,
     Origin,
-    Surname,
-  ]
+    Surname
+  ].freeze
 
   def klass(generator)
     return nil unless exists?(generator)

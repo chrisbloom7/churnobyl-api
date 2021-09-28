@@ -23,7 +23,7 @@ module Rollers
     private
 
     def d6
-      rand(6) + 1
+      rand(1..6)
     end
   end
 end

@@ -13,6 +13,6 @@ Rails.application.routes.draw do
       get 'generate', on: :member
     end
     get 'generators', to: 'generators#index'
-    get 'generators/:slug', to: 'generators#show', constraints: { slug: /\w[\w\d_]*(\/[\w\d_]+)*/i }
+    get 'generators/:slug', to: 'generators#show', constraints: { slug: %r{\w[\w\d_]*(/[\w\d_]+)*}i }
   end
 end

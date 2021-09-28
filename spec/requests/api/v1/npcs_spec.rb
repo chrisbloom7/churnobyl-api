@@ -18,21 +18,21 @@ RSpec.describe '/v1/npcs', type: :request do
   # This should return the minimal set of attributes required to create a valid
   # NPC. As you add validations to NPC, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
+  let(:valid_attributes) do
     { age: 'a child' }
-  }
+  end
 
-  let(:invalid_attributes) {
+  let(:invalid_attributes) do
     skip('Add a hash of attributes invalid for your model')
-  }
+  end
 
   # This should return the minimal set of values that should be in the headers
   # in order to pass any filters (e.g. authentication) defined in
   # NPCsController, or in your router and rack
   # middleware. Be sure to keep this updated too.
-  let(:valid_headers) {
+  let(:valid_headers) do
     {}
-  }
+  end
 
   describe 'GET /v1/index' do
     it 'renders a successful response' do
@@ -64,10 +64,10 @@ RSpec.describe '/v1/npcs', type: :request do
     context 'with valid parameters' do
       it 'creates a new NPC' do
         skip('Deprecated')
-        expect {
+        expect do
           post v1_npcs_url,
                params: { npc: valid_attributes }, headers: valid_headers, as: :json
-        }.to change(NPC, :count).by(1)
+        end.to change(NPC, :count).by(1)
       end
 
       it 'renders a JSON response with the new npc' do
@@ -82,10 +82,10 @@ RSpec.describe '/v1/npcs', type: :request do
     context 'with invalid parameters' do
       it 'does not create a new NPC' do
         skip('Deprecated')
-        expect {
+        expect do
           post v1_npcs_url,
                params: { npc: invalid_attributes }, as: :json
-        }.to change(NPC, :count).by(0)
+        end.to change(NPC, :count).by(0)
       end
 
       it 'renders a JSON response with errors for the new npc' do
@@ -100,9 +100,9 @@ RSpec.describe '/v1/npcs', type: :request do
 
   describe 'PATCH /v1/update' do
     context 'with valid parameters' do
-      let(:new_attributes) {
+      let(:new_attributes) do
         skip('Add a hash of attributes valid for your model')
-      }
+      end
 
       it 'updates the requested npc' do
         skip('Deprecated')
@@ -139,9 +139,9 @@ RSpec.describe '/v1/npcs', type: :request do
     it 'destroys the requested npc' do
       skip('Deprecated')
       npc = NPC.create! valid_attributes
-      expect {
+      expect do
         delete v1_npc_url(npc), headers: valid_headers, as: :json
-      }.to change(NPC, :count).by(-1)
+      end.to change(NPC, :count).by(-1)
     end
   end
 end

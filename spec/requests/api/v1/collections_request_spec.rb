@@ -6,21 +6,21 @@ RSpec.describe '/v1/collections', type: :request do
   # This should return the minimal set of attributes required to create a valid
   # NPC. As you add validations to NPC, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
+  let(:valid_attributes) do
     skip('Add a hash of valid attributes for your model')
-  }
+  end
 
-  let(:invalid_attributes) {
+  let(:invalid_attributes) do
     skip('Add a hash of attributes invalid for your model')
-  }
+  end
 
   # This should return the minimal set of values that should be in the headers
   # in order to pass any filters (e.g. authentication) defined in
   # CollectionsController, or in your router and rack
   # middleware. Be sure to keep this updated too.
-  let(:valid_headers) {
+  let(:valid_headers) do
     {}
-  }
+  end
 
   describe 'GET /v1/index' do
     xit 'returns http success' do

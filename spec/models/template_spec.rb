@@ -2,13 +2,15 @@
 
 require 'rails_helper'
 
-class RandomTables::RandomTest
-  def self.random
-    'random'
+module RandomTables
+  class RandomTest
+    def self.random
+      'random'
+    end
   end
-end
 
-class RandomTables::NonRandomTest; end # rubocop:disable Lint/EmptyClass
+  class NonRandomTest; end # rubocop:disable Lint/EmptyClass
+end
 
 RSpec.describe Template, type: :model do
   let(:collection) { Collection.new }

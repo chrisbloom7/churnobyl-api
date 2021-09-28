@@ -14,7 +14,7 @@ class Template < ApplicationRecord
   private
 
   def generator_must_exist
-    return unless generator.present?
+    return if generator.blank?
 
     if generator_klass.nil?
       errors.add(:generator, 'is not a valid generator name')

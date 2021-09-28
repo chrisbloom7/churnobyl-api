@@ -7,7 +7,7 @@ module API
         @generators = RandomTables::REGISTRY
 
         @data = @generators.map do |generator|
-          name = generator.name.gsub(/\ARandomTables::/, '')
+          name = generator.name.delete_prefix('RandomTables::')
           slug = name.tableize
           { id: slug, name: name, description: 'TODO' }
         end
@@ -32,7 +32,7 @@ module API
           }
           render json: @data
         else
-          render json: 'Not Found', status: 404
+          render json: 'Not Found', status: :not_found
         end
       end
     end

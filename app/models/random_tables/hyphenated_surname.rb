@@ -41,12 +41,12 @@ module RandomTables
 
       private
 
-      def get_surname
+      def surname
         RandomTables::Surname.random
       end
 
       def select_unique_surnames!(count, surnames)
-        count.times { surnames << get_surname }
+        count.times { surnames << surname }
         surnames.uniq!
       end
 

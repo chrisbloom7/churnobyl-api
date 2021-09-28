@@ -3,7 +3,7 @@
 require 'terminal-table'
 
 class Collection < ApplicationRecord
-  has_many :templates, inverse_of: :collection
+  has_many :templates, dependent: :destroy, inverse_of: :collection
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :default_label, presence: true

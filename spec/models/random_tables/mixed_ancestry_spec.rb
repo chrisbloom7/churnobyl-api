@@ -84,8 +84,9 @@ RSpec.describe RandomTables::MixedAncestry, type: :model do
       expect(described_class).to receive(:weighted_random_count).and_return(default_max)
 
       # Ensure non-unique entries are returned
-      expect(super_class).to receive(:random).exactly(default_max + 1).times.and_return(unique_ancestry1,
-                                                                                        duplicate_ancestry, unique_ancestry3)
+      expect(super_class).to receive(:random)
+        .exactly(default_max + 1).times
+        .and_return(unique_ancestry1, duplicate_ancestry, unique_ancestry3)
 
       ancestries = described_class.random(join: false)
       expect(ancestries).to contain_exactly(unique_ancestry1, unique_ancestry3)

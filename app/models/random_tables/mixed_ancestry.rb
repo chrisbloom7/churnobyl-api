@@ -41,12 +41,12 @@ module RandomTables
 
       private
 
-      def get_ancestry
+      def ancestry
         RandomTables::Ancestry.random
       end
 
       def select_unique_ancestries!(count, ancestries)
-        count.times { ancestries << get_ancestry }
+        count.times { ancestries << ancestry }
         ancestries.uniq!
       end
 

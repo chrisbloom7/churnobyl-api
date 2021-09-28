@@ -8,12 +8,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-puts 'Generating seed data'
+Rails.logger.debug 'Generating seed data'
 
 if Collection.named('basic_npc').present?
-  puts 'Collection basic_npc already exists'
+  Rails.logger.debug 'Collection basic_npc already exists'
 else
-  puts 'Creating basic_npc collection'
+  Rails.logger.debug 'Creating basic_npc collection'
 
   templates = []
   templates << Template.new(label: 'First Name', generator: 'FirstName')
@@ -29,9 +29,9 @@ else
 end
 
 if Collection.named('expanse_npc').present?
-  puts 'Collection expanse_npc already exists'
+  Rails.logger.debug 'Collection expanse_npc already exists'
 else
-  puts 'Creating expanse_npc collection'
+  Rails.logger.debug 'Creating expanse_npc collection'
 
   templates = []
   templates << Template.new(label: 'First Name', generator: 'FirstName')
@@ -48,9 +48,9 @@ else
 end
 
 if Collection.named('statted_expanse_npc').present?
-  puts 'Collection statted_expanse_npc already exists'
+  Rails.logger.debug 'Collection statted_expanse_npc already exists'
 else
-  puts 'Creating statted_expanse_npc collection'
+  Rails.logger.debug 'Creating statted_expanse_npc collection'
 
   templates = []
   templates << Template.new(label: 'First Name', generator: 'FirstName')
@@ -86,4 +86,4 @@ else
 
 end
 
-puts 'Seeding complete'
+Rails.logger.debug 'Seeding complete'

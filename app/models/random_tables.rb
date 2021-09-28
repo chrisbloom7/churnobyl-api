@@ -19,6 +19,7 @@ module RandomTables
 
   def klass(generator)
     return nil unless exists?(generator)
+
     RandomTables.const_get(generator)
   end
 

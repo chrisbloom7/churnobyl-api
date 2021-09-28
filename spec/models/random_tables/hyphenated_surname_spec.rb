@@ -46,7 +46,8 @@ RSpec.describe RandomTables::HyphenatedSurname, type: :model do
       expect(described_class).to receive(:weighted_random_count).and_return(max)
 
       # Ensure unique entries are returned
-      expect(super_class).to receive(:random).exactly(max).times.and_return(unique_surname1, unique_surname2, unique_surname3)
+      expect(super_class).to receive(:random).exactly(max).times.and_return(unique_surname1, unique_surname2,
+                                                                            unique_surname3)
 
       surnames = described_class.random(max: max, join: false)
       expect(surnames).to contain_exactly(unique_surname1, unique_surname2, unique_surname3)
@@ -61,7 +62,8 @@ RSpec.describe RandomTables::HyphenatedSurname, type: :model do
       # Num calls to random = max + (max - unique) + (max - new unique) + ...
       #                         3 +              2 +                  1
       count = (described_class::MAX_UNIQUE_ATTEMPTS * max) - 2 - 1
-      expect(super_class).to receive(:random).exactly(count).times.and_return(unique_surname1, unique_surname1, unique_surname1, unique_surname2)
+      expect(super_class).to receive(:random).exactly(count).times.and_return(unique_surname1, unique_surname1,
+                                                                              unique_surname1, unique_surname2)
 
       described_class.random(max: max, join: false)
     end
@@ -82,7 +84,8 @@ RSpec.describe RandomTables::HyphenatedSurname, type: :model do
       expect(described_class).to receive(:weighted_random_count).and_return(default_max)
 
       # Ensure non-unique entries are returned
-      expect(super_class).to receive(:random).exactly(default_max + 1).times.and_return(unique_surname1, duplicate_surname, unique_surname3)
+      expect(super_class).to receive(:random).exactly(default_max + 1).times.and_return(unique_surname1,
+                                                                                        duplicate_surname, unique_surname3)
 
       surnames = described_class.random(join: false)
       expect(surnames).to contain_exactly(unique_surname1, unique_surname3)

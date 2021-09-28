@@ -19,6 +19,7 @@ class RandomTableGenerator < Rails::Generators::NamedBase
 
   def random_weight_column
     return nil unless weighted?
+
     options[:random_weight_column].presence || :weight
   end
 end

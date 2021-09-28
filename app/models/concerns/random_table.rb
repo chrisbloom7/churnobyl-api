@@ -30,6 +30,7 @@ module RandomTable
     # Returns an array of weighted IDs
     def weighted_ids
       raise ArgumentError, "#{name}.random_weight_column is not set" unless random_weight_column?
+
       pluck(random_id_column, random_weight_column).flat_map do |id, weight|
         weight = weight.present? ? weight.to_i : 1
         weight.to_i > 1 ? Array.new(weight, id) : id

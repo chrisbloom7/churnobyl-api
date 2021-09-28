@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe API::V1::CollectionsController, type: :controller do
-
   describe 'GET #index' do
     xit 'returns http success' do
       get :index
@@ -45,5 +44,4 @@ RSpec.describe API::V1::CollectionsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
-
 end

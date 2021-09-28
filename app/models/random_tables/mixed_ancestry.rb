@@ -35,6 +35,7 @@ module RandomTables
         end
 
         return ancestries.join(separator) if join
+
         ancestries
       end
 
@@ -54,7 +55,7 @@ module RandomTables
         range = Range.new(1, max).to_a
         weights = [1 - weight] + Array.new(max - 1, weight)
         weighted_range = range.zip(weights).to_h
-        weighted_range.max_by { |_, w| rand ** (1.0 / w) }.first
+        weighted_range.max_by { |_, w| rand**(1.0 / w) }.first
       end
     end
   end

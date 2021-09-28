@@ -46,7 +46,8 @@ RSpec.describe RandomTables::MixedAncestry, type: :model do
       expect(described_class).to receive(:weighted_random_count).and_return(max)
 
       # Ensure unique entries are returned
-      expect(super_class).to receive(:random).exactly(max).times.and_return(unique_ancestry1, unique_ancestry2, unique_ancestry3)
+      expect(super_class).to receive(:random).exactly(max).times.and_return(unique_ancestry1, unique_ancestry2,
+                                                                            unique_ancestry3)
 
       ancestries = described_class.random(max: max, join: false)
       expect(ancestries).to contain_exactly(unique_ancestry1, unique_ancestry2, unique_ancestry3)
@@ -61,7 +62,8 @@ RSpec.describe RandomTables::MixedAncestry, type: :model do
       # Num calls to random = max + (max - unique) + (max - new unique) + ...
       #                         3 +              2 +                  1
       count = (described_class::MAX_UNIQUE_ATTEMPTS * max) - 2 - 1
-      expect(super_class).to receive(:random).exactly(count).times.and_return(unique_ancestry1, unique_ancestry1, unique_ancestry1, unique_ancestry2)
+      expect(super_class).to receive(:random).exactly(count).times.and_return(unique_ancestry1, unique_ancestry1,
+                                                                              unique_ancestry1, unique_ancestry2)
 
       described_class.random(max: max, join: false)
     end
@@ -82,7 +84,8 @@ RSpec.describe RandomTables::MixedAncestry, type: :model do
       expect(described_class).to receive(:weighted_random_count).and_return(default_max)
 
       # Ensure non-unique entries are returned
-      expect(super_class).to receive(:random).exactly(default_max + 1).times.and_return(unique_ancestry1, duplicate_ancestry, unique_ancestry3)
+      expect(super_class).to receive(:random).exactly(default_max + 1).times.and_return(unique_ancestry1,
+                                                                                        duplicate_ancestry, unique_ancestry3)
 
       ancestries = described_class.random(join: false)
       expect(ancestries).to contain_exactly(unique_ancestry1, unique_ancestry3)

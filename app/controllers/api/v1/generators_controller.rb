@@ -25,10 +25,10 @@ module API
             id: slug,
             name: name,
             sample_data: if @generator.respond_to?(:first)
-              @generator.first.attributes
-            else
-              @generator.random
-            end
+                           @generator.first.attributes
+                         else
+                           @generator.random
+                         end
           }
           render json: @data
         else

@@ -19,6 +19,7 @@ class Collection < ApplicationRecord
 
   def execute
     return @data if instance_variable_defined?(:@data)
+
     @data = templates.map(&:execute)
   end
 

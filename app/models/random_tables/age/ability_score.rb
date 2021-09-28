@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module RandomTables
   module Age
     class AbilityScore < ApplicationYamlHash

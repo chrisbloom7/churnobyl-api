@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class RandomTableGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
   class_option :weighted, type: :boolean, default: false,

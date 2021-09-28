@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module RandomTables
   class MixedAncestry
     # Number of times to try to get the selected number of unique ancestries

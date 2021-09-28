@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 # These methods are tested in more detail in spec/models/concerns/random_table_spec.rb.

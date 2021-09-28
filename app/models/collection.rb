@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "terminal-table"
 
 class Collection < ApplicationRecord

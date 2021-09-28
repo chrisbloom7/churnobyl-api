@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class RenameEthnicityToAncestry < ActiveRecord::Migration[6.0]
   def change
     change_table :npcs do |t|

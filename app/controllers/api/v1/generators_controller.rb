@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class API::V1::GeneratorsController < ApplicationController
   def index
     @generators = RandomTables::REGISTRY

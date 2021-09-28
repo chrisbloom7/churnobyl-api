@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module API::V1
   class NPCsController < API::APIController
     before_action :set_npc, only: [:show, :update, :destroy]

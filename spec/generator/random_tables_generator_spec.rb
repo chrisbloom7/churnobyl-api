@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 require "generator_spec"
 require 'generators/random_table/random_table_generator'

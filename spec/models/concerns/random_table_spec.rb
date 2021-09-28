@@ -4,6 +4,7 @@ require 'rails_helper'
 
 class ExampleTable < ActiveHash::Base
   include RandomTable
+
   self.data = [
     { id: 1, weight: 1, value: 'one' },
     { id: 2, weight: 2, value: 'two' },
@@ -12,16 +13,14 @@ class ExampleTable < ActiveHash::Base
 end
 
 RSpec.describe RandomTable, type: :concern do
-  before do
-    @default_data = ExampleTable.data.dup
-    @default_random_id_column = ExampleTable.random_id_column
-    @default_random_weight_column = ExampleTable.random_weight_column
-  end
+  let!(:default_data) { ExampleTable.data.dup }
+  let!(:default_random_id_column) { ExampleTable.random_id_column }
+  let!(:default_random_weight_column) { ExampleTable.random_weight_column }
 
   after do
-    ExampleTable.random_id_column = @default_random_id_column
-    ExampleTable.random_weight_column = @default_random_weight_column
-    ExampleTable.data = @default_data
+    ExampleTable.random_id_column = default_random_id_column
+    ExampleTable.random_weight_column = default_random_weight_column
+    ExampleTable.data = default_data
   end
 
   describe '.random_id_column' do
@@ -109,12 +108,12 @@ RSpec.describe RandomTable, type: :concern do
       end
 
       it 'defaults to a weight of 1 if no weight is provided' do
-        ExampleTable.data = @default_data + [{ id: 4 }]
+        ExampleTable.data = default_data + [{ id: 4 }]
         expect(ExampleTable.weighted_ids).to contain_exactly(1, 2, 2, 3, 3, 3, 4)
       end
 
       it 'converts weights to integers' do
-        ExampleTable.data = @default_data + [
+        ExampleTable.data = default_data + [
           { id: 4, weight: 'a' },
           { id: 5, weight: '2' },
           { id: 6, weight: 0.5 }

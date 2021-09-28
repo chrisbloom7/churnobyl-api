@@ -1,0 +1,19 @@
+require:
+- rubocop-performance
+- rubocop-rails
+- rubocop-rspec
+
+AllCops:
+  CacheRootDirectory: ./tmp
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  Exclude:
+  - '.git/**/*'
+  - 'bin/**/*'
+  - 'db/schema.rb'
+  - 'tmp/**/*'
+  - 'vendor/**/*'
+  ExtraDetails: true
+  DefaultFormatter: progress
+  NewCops: enable
+  TargetRubyVersion: 3.0

@@ -8,7 +8,7 @@ shared_examples_for 'a simple random table' do
   describe '.random' do
     it 'returns a random value from the data table' do
       random_value = described_class.random
-      expect(random_value).to_not be_nil
+      expect(random_value).not_to be_nil
       expect(described_class.all.map(&:value)).to include(random_value)
     end
   end

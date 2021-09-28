@@ -21,29 +21,29 @@ RSpec.describe Collection, type: :model do
 
   describe '.new' do
     it 'requires a name' do
-      expect(Collection.new(valid_attributes)).to be_valid
-      instance = Collection.new(valid_attributes.except(:name))
+      expect(described_class.new(valid_attributes)).to be_valid
+      instance = described_class.new(valid_attributes.except(:name))
       expect(instance).not_to be_valid
       expect(instance.errors.keys).to include(:name)
     end
 
     it 'requires name to be unique' do
-      Collection.create!(valid_attributes)
-      instance = Collection.new(valid_attributes)
+      described_class.create!(valid_attributes)
+      instance = described_class.new(valid_attributes)
       expect(instance).not_to be_valid
       expect(instance.errors.keys).to include(:name)
     end
 
     it 'requires a default_label' do
-      expect(Collection.new(valid_attributes)).to be_valid
-      instance = Collection.new(valid_attributes.except(:default_label))
+      expect(described_class.new(valid_attributes)).to be_valid
+      instance = described_class.new(valid_attributes.except(:default_label))
       expect(instance).not_to be_valid
       expect(instance.errors.keys).to include(:default_label)
     end
   end
 
   describe '#reset' do
-    subject { Collection.new(valid_attributes) }
+    subject { described_class.new(valid_attributes) }
 
     it 'unmemoizes the execute method' do
       template1 = Template.new(label: 'First', generator: 'RandomTest')
@@ -70,7 +70,7 @@ RSpec.describe Collection, type: :model do
         Template.new(label: 'First', generator: 'RandomTest'),
         Template.new(label: 'Second', generator: 'RandomTestTwo')
       ]
-      Collection.new(valid_attributes.merge(templates: templates))
+      described_class.new(valid_attributes.merge(templates: templates))
     end
 
     it 'calls execute on each attached template' do
@@ -98,7 +98,7 @@ RSpec.describe Collection, type: :model do
         Template.new(label: 'First', generator: 'RandomTest'),
         Template.new(label: 'Second', generator: 'RandomTestTwo')
       ]
-      Collection.new(valid_attributes.merge(templates: templates))
+      described_class.new(valid_attributes.merge(templates: templates))
     end
 
     it 'returns a the data as an ASCII table' do

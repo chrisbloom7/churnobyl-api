@@ -21,10 +21,16 @@ AllCops:
 RSpec/ExampleLength:
   Enabled: false
 
+RSpec/MessageSpies:
+  Enabled: false
+
 RSpec/MultipleExpectations:
   Enabled: false
 
 RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/StubbedMock:
   Enabled: false
 
 Metrics/AbcSize:

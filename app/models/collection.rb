@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require "terminal-table"
+
+require 'terminal-table'
 
 class Collection < ApplicationRecord
   has_many :templates, inverse_of: :collection

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class API::V1::CollectionsController < ApplicationController
   def index
     @collections = Collection.all

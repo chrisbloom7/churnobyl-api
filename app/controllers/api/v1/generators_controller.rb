@@ -1,12 +1,13 @@
 # frozen_string_literal: true
+
 class API::V1::GeneratorsController < ApplicationController
   def index
     @generators = RandomTables::REGISTRY
 
     @data = @generators.map do |generator|
-      name = generator.name.gsub(/\ARandomTables::/, "")
+      name = generator.name.gsub(/\ARandomTables::/, '')
       slug = name.tableize
-      { id: slug, name: name, description: "TODO" }
+      { id: slug, name: name, description: 'TODO' }
     end
 
     render json: @data
@@ -29,7 +30,7 @@ class API::V1::GeneratorsController < ApplicationController
       }
       render json: @data
     else
-      render json: "Not Found", status: 404
+      render json: 'Not Found', status: 404
     end
   end
 end
